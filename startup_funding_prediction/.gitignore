@@ -1,0 +1,35 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+
+# Virtual environment
+venv/
+.env/
+.envrc
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Model and Scaler files
+*.h5
+*.keras
+*.pkl
+*.joblib
+
+# Flask cache and debug logs
+instance/
+*.log
+
+# System-specific files
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# OS files
+*.swp
