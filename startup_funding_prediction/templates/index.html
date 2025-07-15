@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🚀 Startup Funding Predictor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .form-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+    .btn-custom {
+      background-color: #00c9a7;
+      border: none;
+    }
+    .btn-custom:hover {
+      background-color: #00b28f;
+    }
+    .form-label {
+      font-weight: bold;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+    @media (max-width: 768px) {
+      .form-container {
+        margin-top: 2rem;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
+      <h2 class="text-center mb-4">💼 Startup Funding Predictor</h2>
+      <form method="POST" onsubmit="showSpinner()">
+        <div class="mb-3">
+          <label class="form-label">Startup Name</label>
+          <input type="text" class="form-control" name="startup" placeholder="e.g. Paytm" required>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Industry Vertical</label>
+          <input list="industryList" class="form-control" name="industry" placeholder="e.g. FinTech" required>
+          <datalist id="industryList">
+            <option value="FinTech">
+            <option value="E-Commerce">
+            <option value="Health-Tech">
+            <option value="Ed-Tech">
+            <option value="Logistics">
+            <option value="AI">
+            <option value="SaaS">
+            <option value="Healthcare">
+            <option value="Travel Tech">
+          </datalist>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Subvertical</label>
+          <input list="subverticalList" class="form-control" name="subvertical" placeholder="e.g. Mobile Payments" required>
+          <datalist id="subverticalList">
+            <option value="Online Marketplace">
+            <option value="Mobile Payments">
+            <option value="Food Delivery">
+            <option value="Online Education">
+            <option value="Cloud Services">
+            <option value="Logistics Platform">
+          </datalist>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">City/Location</label>
+          <input list="cityList" class="form-control" name="city" placeholder="e.g. Bengaluru" required>
+          <datalist id="cityList">
+            <option value="Bengaluru">
+            <option value="Mumbai">
+            <option value="Delhi">
+            <option value="Hyderabad">
+            <option value="Pune">
+            <option value="Chennai">
+            <option value="Gurgaon">
+          </datalist>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Investor Name</label>
+          <input list="investorList" class="form-control" name="investor" placeholder="e.g. Sequoia Capital" required>
+          <datalist id="investorList">
+            <option value="Sequoia Capital">
+            <option value="Accel Partners">
+            <option value="SoftBank">
+            <option value="Tiger Global">
+            <option value="Matrix Partners">
+            <option value="Blume Ventures">
+            <option value="SAIF Partners">
+          </datalist>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Investment Type</label>
+          <input list="invTypeList" class="form-control" name="inv_type" placeholder="e.g. Seed Funding" required>
+          <datalist id="invTypeList">
+            <option value="Seed Funding">
+            <option value="Angel">
+            <option value="Series A">
+            <option value="Series B">
+            <option value="Private Equity">
+            <option value="Venture Round">
+          </datalist>
+        </div>
+
+        <button type="submit" class="btn btn-custom w-100">🔮 Predict Funding</button>
+
+        <div id="spinner" style="display:none;" class="text-center mt-3">
+          <div class="spinner-border text-light" role="status"></div>
+          <div class="mt-2">Predicting...</div>
+        </div>
+      </form>
+
+      {% if prediction %}
+      <div class="alert alert-info text-center result mt-4">
+        {{ prediction }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    function showSpinner() {
+      document.getElementById("spinner").style.display = "block";
+    }
+  </script>
+</body>
+</html>
