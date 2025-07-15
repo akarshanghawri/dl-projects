@@ -24,18 +24,22 @@ df.columns = df.columns.str.strip().str.replace(' ', '_').str.lower()
 # Drop irrelevant or problematic columns
 df.drop(columns=['date_dd/mm/yyyy'], inplace=True)
 
-# Encode Categorical Columns
-# Identify categorical columns
+# Dictionary to store label encoders for each column
+encoders = {}
 cat_cols = df.select_dtypes(include='object').columns.tolist()
 
-# label encoding
 for col in cat_cols:
     le = LabelEncoder()
     df[col] = le.fit_transform(df[col])
+    encoders[col] = le
+    
+# Save encoders
+joblib.dump(encoders, os.path.join(model_dir, 'label_encoders.pkl'))
 
 # Feature and target Split
 X = df.drop(columns=['amount_in_usd'])
 y = df['amount_in_usd']
+print(X.columns.tolist())
 
 # Train-Test Split 
 X_train, X_test, y_train, y_test = train_test_split(
